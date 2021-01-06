@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <style>
+    body {
+      font-family: Georgia;
+    }
+    .pet-name {
+      font-size: 48px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .description {
+      font-size: 18px;
+      padding-top: 16px;
+      padding-bottom: 32px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .image-area {
+      background-color:cornflowerblue;
+      display: grid;
+      justify-items: center;
+    }
+    .pet-image {
+      height: 500px;
+      max-width: 100%;
+      max-height: 70%;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    .interactive-area {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      color:blue;
+      background-color: pink;
+    }
+    .activity-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      width: 90%;
+      padding: 0 1rem;
+    }
+    .activity-icon {
+      height: 40px;
+      height: 40px;
+    }
+    .activity-button {
+      border-radius: 8px;
+      color: blue;
+      cursor: pointer;
+      height: 100%;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 0 15px 0 grey;
+      background-color: white;
+    }
+   </style>
+   </head>
+  <body>
+    <div class="header">
+    <div class="pet-name">Peppa</div>
+    <div class="description">Peppa is a peaceful yet playful pig </div>
+    <div class="main">
+      <div class="image-area">
+        <img class="pet-image" src='Neutral.gif'/>
+      </div>
+      <div class="interactive-area">
+        <div class="activity-row">
+          <img class="activity-icon" src="Food.jpg"/>
+          <div class="activity-stat">100</div>
+          <div class="activity-button">Eat waffles</div>
+        </div>
+        <div class="activity-row">
+          <img class="activity-icon" src="Water.png" />
+          <div class="activity-stat">50</div>
+          <div class="activity-button">Drink water</div>
+        </div>
+        <div class="activity-row">
+          <img class="activity-icon" src="Exercise.jpg"/>
+          <div class="activity-stat">5</div>
+          <div class="activity-button">Exercise</div>
+        </div>
+      </div>
+      
+  </body>
+</html>
