@@ -65,33 +65,114 @@
       box-shadow: 0 0 15px 0 grey;
       background-color: white;
     }
+    .hidden {
+      display: none;
+    }
    </style>
    </head>
   <body>
     <div class="header">
-    <div class="pet-name">Peppa</div>
-    <div class="description">Peppa is a peaceful yet playful pig </div>
+     <div class="pet-name">Peppa</div>
+     <div class="description">Peppa is a peaceful yet playful pig
+    </div>
     <div class="main">
       <div class="image-area">
-        <img class="pet-image" src='Neutral.gif'/>
+        <img id="pet-image" class="pet-image" src="Neutral.gif"/>
       </div>
       <div class="interactive-area">
-        <div class="activity-row">
-          <img class="activity-icon" src="Food.jpg"/>
-          <div class="activity-stat">100</div>
-          <div class="activity-button">Eat waffles</div>
+          <div id="food-row" class="activity-row">
+            <img class="activity-icon" src="Food.jpg" />
+            <div id="food-stat" class="activity-stat">50</div>
+            <div class="activity-button" onclick="giveFood()">Eat waffles</div>
+          </div>
+           <div id="water-row" class="activity-row">
+            <img class="activity-icon" src="Water.png" />
+            <div id="water-stat" class="activity-stat">50</div>
+            <div class="activity-button" onclick="giveWater()">Drink water</div>
+          </div>
+          <div id="exercise-row" class="activity-row">
+            <img class="activity-icon" src="Exercise.jpg" />
+            <div id="exercise-stat" class="activity-stat">50</div>
+           <div class="activity-button" onclick="giveExercise()">Exercise</div>
         </div>
-        <div class="activity-row">
-          <img class="activity-icon" src="Water.png" />
-          <div class="activity-stat">50</div>
-          <div class="activity-button">Drink water</div>
-        </div>
-        <div class="activity-row">
-          <img class="activity-icon" src="Exercise.jpg"/>
-          <div class="activity-stat">5</div>
-          <div class="activity-button">Exercise</div>
+        <div id="end-game" class="end-game hidden">
+          <div class="message">
+            Your pet has passed out.
+          </div>
+          <div class="activity-button restart-button" onclick="restart()">
+            Restart
+          </div>
         </div>
       </div>
-      
+    </div>
   </body>
+  <script>
+    var hasNotPassedOut = true
+    var food = 80
+    var water = 80
+    var exercise = 80
+    var giveFood = () => {
+      food = food + 15
+      water = water - 5
+      exercise = exercise - 5
+      updateHTML()
+    }
+    var giveWater = () => {
+      water = water + 15
+      food = food - 5
+      exercise = exercise - 2
+      updateHTML()
+    }
+    var giveExercise = () => {
+      exercise = exercise + 30
+      water = water - 15
+      food = food - 10
+      updateHTML()
+    }
+    var updateHTML = () => {
+      document.getElementById("food-stat").innerHTML = food
+      document.getElementById("water-stat").innerHTML = water
+      document.getElementById("exercise-stat").innerHTML = exercise
+      var lowestStat= Math.min(food, water, exercise)
+      var imageSrc
+    
+      if (lowestStat <= 0) {
+        imageSrc= 'Sleeping.gif'
+        if (hasNotPassedOut) {
+          toggleInteractivity()
+          hasNotPassedOut = false
+        }
+      } else if (lowestStat < 5) {
+        imageSrc = 'Tired.gif'
+      } else if (lowestStat < 25) {
+        imageSrc = 'Neutral.gif'
+      } else if (lowestStat < 70) {
+        imageSrc = 'Upbeat.gif'
+      } else {
+        imageSrc = 'Exuberant.gif'
+      }
+      document.getElementById("pet-image").src = imageSrc
+     }
+    var agePet = () => {
+      water = water - 8
+      food = food - 4
+      exercise = exercise - 2
+      updateHTML()
+    }
+    setInterval(agePet, 2000)
+    var toggleInteractivity = () => {
+      document.getElementById("food-row").classList.toggle("hidden")
+      document.getElementById("water-row").classList.toggle("hidden")
+      document.getElementById("exercise-row").classList.toggle("hidden")
+      document.getElementById("end-game").classList.toggle("hidden")
+    }
+    var restart = () => {
+      food = 50
+      water = 50
+      exercise = 50
+      hasNotPassedOut = true
+      toggleInteractivity()
+      updateHTML()
+    }
+  </script>
 </html>
